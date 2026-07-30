@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotaSPM — Nota SPM Lengkap</title>
+  <meta name="description" content="Portfolio dan landing page untuk fail nota SPM.">
+  <style>
+    :root{
+      --bg:#f7f7fb; --card:#fff; --text:#171722; --muted:#66687a;
+      --primary:#635bff; --primary2:#8b5cf6; --line:#e9e9f2;
+      --shadow:0 18px 50px rgba(36,32,75,.10); --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    nav{position:sticky;top:0;z-index:20;background:rgba(247,247,251,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(233,233,242,.8)}
+    .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:1.25rem;font-weight:900;letter-spacing:-.5px}
+    .logo span{color:var(--primary)}
+    .nav-links{display:flex;gap:26px;color:#55566a;font-size:.94rem;font-weight:600}
+    .nav-links a:hover{color:var(--primary)}
+    .nav-btn{padding:11px 17px;border-radius:12px;background:var(--text);color:white;font-weight:800;font-size:.9rem}
+    .hero{padding:82px 0 70px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;background:#ecebff;color:#5149d8;font-size:.82rem;font-weight:800;margin-bottom:18px}
+    h1{font-size:clamp(2.7rem,6vw,5.1rem);line-height:.98;letter-spacing:-4px;max-width:700px}
+    h1 span{color:var(--primary)}
+    .hero p{font-size:1.1rem;color:var(--muted);max-width:600px;margin:24px 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:0;cursor:pointer;padding:14px 21px;border-radius:14px;font-weight:850;transition:.2s;display:inline-flex;align-items:center;justify-content:center}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;box-shadow:0 12px 25px rgba(99,91,255,.22)}
+    .btn-dark{background:var(--text);color:#fff}
+    .btn-light{background:#fff;border:1px solid var(--line)}
+    .btn:hover{transform:translateY(-2px)}
+    .preview-wrap{position:relative}
+    .paper{background:white;border:1px solid var(--line);border-radius:28px;padding:25px;box-shadow:var(--shadow);transform:rotate(2deg)}
+    .paper-top{height:170px;border-radius:18px;background:linear-gradient(135deg,#e9e7ff,#f7eaff);display:flex;align-items:end;padding:22px}
+    .paper-top strong{font-size:2rem;line-height:1}
+    .paper-body{padding:23px 8px 5px}
+    .line{height:10px;border-radius:99px;background:#ededf4;margin:12px 0}
+    .line.short{width:60%}.line.mid{width:78%}
+    .float-card{position:absolute;right:-12px;bottom:-28px;background:#fff;padding:18px;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);font-weight:800}
+    section{padding:82px 0}
+    .section-head{text-align:center;max-width:680px;margin:0 auto 42px}
+    .section-head h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-2px;line-height:1.05}
+    .section-head p{color:var(--muted);margin-top:12px}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 30px rgba(30,28,60,.04)}
+    .icon{width:48px;height:48px;border-radius:14px;background:#efeeff;display:grid;place-items:center;font-size:1.4rem;margin-bottom:20px}
+    .card h3{font-size:1.15rem;margin-bottom:8px}.card p{color:var(--muted);font-size:.95rem}
+    .showcase{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .preview-card{min-height:310px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+    .preview-card .cover{height:190px;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:end;background:linear-gradient(135deg,#11111b,#45455c);color:white}
+    .preview-card:nth-child(2) .cover{background:linear-gradient(135deg,#5b50e8,#b36bff)}
+    .preview-card:nth-child(3) .cover{background:linear-gradient(135deg,#087f73,#44b7a5)}
+    .preview-card:nth-child(4) .cover{background:linear-gradient(135deg,#f09b42,#ed5f70)}
+    .cover small{opacity:.8}.cover h3{font-size:1.6rem;margin-top:5px}
+    .price-box{display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center;background:#171722;color:white;border-radius:30px;padding:45px}
+    .price-box p{color:#bdbdcc;margin-top:10px}.price{font-size:3.4rem;font-weight:900;letter-spacing:-2px}
+    .check-list{list-style:none;margin:25px 0}.check-list li{margin:10px 0;color:#e8e8f1}.check-list li::before{content:"✓";color:#9b92ff;font-weight:900;margin-right:10px}
+    .price-action{background:white;color:var(--text);border-radius:22px;padding:27px;text-align:center}
+    .price-action small{color:var(--muted)}
+    .faq{max-width:800px;margin:auto}
+    details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px 22px;margin:10px 0}
+    summary{cursor:pointer;font-weight:800}
+    details p{color:var(--muted);margin-top:10px}
+    .cta{text-align:center;background:linear-gradient(135deg,#ecebff,#f7eaff);border-radius:30px;padding:65px 25px}
+    .cta h2{font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-2px}
+    .cta p{color:var(--muted);margin:12px auto 25px;max-width:600px}
+    footer{padding:30px 0;color:#77788a;font-size:.9rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:25px}
+    .modal{display:none;position:fixed;inset:0;background:rgba(10,10,20,.62);z-index:50;align-items:center;justify-content:center;padding:20px}
+    .modal.show{display:flex}.modal-box{background:white;border-radius:24px;padding:30px;max-width:480px;width:100%;position:relative}
+    .close{position:absolute;right:16px;top:13px;border:0;background:#f0f0f5;border-radius:50%;width:34px;height:34px;cursor:pointer}
+    .modal-box h3{font-size:1.6rem;margin-bottom:8px}.modal-box p{color:var(--muted);margin-bottom:18px}
+    .form input{width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;outline:none}
+    .form input:focus{border-color:var(--primary)}
+    @media(max-width:800px){
+      .nav-links{display:none}.hero{padding-top:55px}.hero-grid,.showcase,.price-box{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}.price-box{padding:30px}.paper{transform:none}
+      h1{letter-spacing:-2.5px}.footer-inner{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">Nota<span>SPM</span></a>
+      <div class="nav-links">
+        <a href="#kelebihan">Kelebihan</a><a href="#preview">Preview</a><a href="#harga">Harga</a><a href="#faq">FAQ</a>
+      </div>
+      <a class="nav-btn" href="#harga">Dapatkan Nota</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">✦ Dibina untuk pelajar SPM</div>
+          <h1>Nota SPM yang <span>ringkas.</span> Mudah ulang kaji.</h1>
+          <p>Fail nota digital yang disusun supaya anda boleh fokus pada isi penting, faham topik dengan lebih cepat dan buat persediaan peperiksaan dengan lebih tersusun.</p>
+          <div class="actions">
+            <a href="#harga" class="btn btn-primary">Lihat Pakej →</a>
+            <a href="#preview" class="btn btn-light">Lihat Preview</a>
+          </div>
+        </div>
+        <div class="preview-wrap">
+          <div class="paper">
+            <div class="paper-top"><strong>NOTA<br>SPM</strong></div>
+            <div class="paper-body">
+              <div class="line"></div><div class="line mid"></div><div class="line"></div><div class="line short"></div>
+            </div>
+          </div>
+          <div class="float-card">📚 Nota tersusun & mudah cari</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kelebihan">
+      <div class="container">
+        <div class="section-head">
+          <h2>Belajar tanpa nota yang berserabut.</h2>
+          <p>Satu fail, satu sistem ulang kaji yang lebih kemas.</p>
+        </div>
+        <div class="features">
+          <div class="card"><div class="icon">⚡</div><h3>Ringkas & padat</h3><p>Fokus kepada konsep dan isi penting supaya masa ulang kaji lebih efisien.</p></div>
+          <div class="card"><div class="icon">🎯</div><h3>Berorientasikan peperiksaan</h3><p>Susunan topik direka untuk membantu anda membuat ulang kaji secara sistematik.</p></div>
+          <div class="card"><div class="icon">📱</div><h3>Digital & fleksibel</h3><p>Boleh dibuka pada telefon, tablet atau komputer bila-bila masa.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="preview">
+      <div class="container">
+        <div class="section-head">
+          <h2>Preview kandungan</h2>
+          <p>Gantikan kad di bawah dengan screenshot sebenar fail nota anda.</p>
+        </div>
+        <div class="showcase">
+          <div class="preview-card"><div class="cover"><small>SUBJEK 01</small><h3>Bahasa Melayu</h3></div></div>
+          <div class="preview-card"><div class="cover"><small>SUBJEK 02</small><h3>Bahasa Arab</h3></div></div>
+          <div class="preview-card"><div class="cover"><small>SUBJEK 03</small><h3>Sejarah</h3></div></div>
+          <div class="preview-card"><div class="cover"><small>SUBJEK 04</small><h3>Pendidikan Islam</h3></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="harga">
+      <div class="container">
+        <div class="price-box">
+          <div>
+            <div class="badge">PAKEJ NOTA DIGITAL</div>
+            <h2>Nota SPM Lengkap</h2>
+            <p>Sesuai untuk pelajar yang mahu bahan ulang kaji lebih tersusun.</p>
+            <ul class="check-list">
+              <li>Fail nota digital</li>
+              <li>Topik disusun mengikut subjek</li>
+              <li>Boleh akses pada pelbagai peranti</li>
+              <li>Kemas kini kandungan mengikut pakej</li>
+            </ul>
+          </div>
+          <div class="price-action">
+            <small>Harga promosi</small>
+            <div class="price">$9.90</div>
+            <p>Bayaran sekali</p>
+            <button class="btn btn-primary" style="width:100%;margin-top:15px" onclick="openModal()">Dapatkan Sekarang</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head"><h2>Soalan lazim</h2><p>Maklumat ringkas sebelum anda membeli.</p></div>
+        <div class="faq">
+          <details><summary>Dalam format apa nota diberikan?</summary><p>Contoh ini menggunakan konsep fail digital. Anda boleh ubah kepada PDF, Google Drive atau format lain mengikut produk sebenar anda.</p></details>
+          <details><summary>Boleh buka menggunakan telefon?</summary><p>Ya. Landing page dan bahan digital direka supaya mudah digunakan pada telefon, tablet dan komputer.</p></details>
+          <details><summary>Adakah nota ini menjamin keputusan tertentu?</summary><p>Tidak. Nota ialah bahan bantu ulang kaji. Keputusan peperiksaan bergantung pada usaha, kefahaman dan persediaan pelajar.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <h2>Mulakan ulang kaji dengan lebih tersusun.</h2>
+          <p>Jadikan nota yang kemas sebagai salah satu alat dalam persediaan SPM anda.</p>
+          <a href="#harga" class="btn btn-dark">Lihat Pakej Nota</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>NotaSPM</strong> — Nota digital untuk ulang kaji SPM.</div>
+      <div>© <span id="year"></span> NotaSPM. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="close" onclick="closeModal()">×</button>
+      <h3>Dapatkan Nota SPM</h3>
+      <p>Demo borang. Tukarkan fungsi ini kepada WhatsApp, payment gateway atau checkout sebenar.</p>
+      <form class="form" onsubmit="submitForm(event)">
+        <input id="name" type="text" placeholder="Nama anda" required>
+        <input id="contact" type="text" placeholder="WhatsApp / Email" required>
+        <button class="btn btn-primary" style="width:100%">Hantar Permintaan</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function openModal(){
+      document.getElementById("modal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      document.getElementById("modal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+    document.getElementById("modal").addEventListener("click", function(e){
+      if(e.target === this) closeModal();
+    });
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      alert("Terima kasih, " + name + "! Borang demo telah diterima.");
+      e.target.reset();
+      closeModal();
+    }
+  </script>
+</body>
+</html>
